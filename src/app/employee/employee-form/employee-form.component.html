@@ -1,0 +1,75 @@
+<form novalidate [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" id="name" class="form-control" formControlName="name">
+    <div class="text-danger" *ngIf="name.invalid && (name.dirty || name.touched)">
+      <small *ngIf="name.errors?.['required']">Name is required</small>
+      <small *ngIf="name.errors?.['pattern']">Name must match the pattern</small>
+      <small *ngIf="name.errors?.['forbiddenName']">{{ name.errors?.['forbiddenName']?.message }}</small>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="department">Department</label>
+    <select type="text" id="name" class="form-select" formControlName="department">
+      <option
+        *ngFor="let department of departments"
+        [ngValue]="department"
+      >{{ department.name }}</option>
+    </select>
+    <div class="text-danger" *ngIf="department.invalid && (department.dirty || department.touched)">
+      <small *ngIf="department.errors?.['required']">Department is required</small>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <div class="form-check">
+      <input
+        class="form-check-input"
+        type="radio"
+        id="male"
+        formControlName="gender"
+        value="male"
+      >
+      <label class="form-check-label" for="male">
+        Male
+      </label>
+    </div>
+    <div class="form-check">
+      <input
+        class="form-check-input"
+        type="radio"
+        id="female"
+        formControlName="gender"
+        value="female"
+      >
+      <label class="form-check-label" for="female">
+        Female
+      </label>
+    </div>
+    <div class="text-danger" *ngIf="gender.invalid && (gender.dirty || gender.touched)">
+      <small *ngIf="gender.errors?.['required']">Gender is required</small>
+    </div>
+  </div>
+
+  <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="smoking" formControlName="smoking">
+    <label class="form-check-label" for="smoking">
+      Smoking
+    </label>
+  </div>
+<!--
+  <div formGroupName="addressGroup">
+    <div class="form-group">
+      <label for="name">City</label>
+      <input type="text" id="name" class="form-control" formControlName="city">
+      <div
+        class="text-danger"
+        *ngIf="addressGroup.controls['city'].invalid && (addressGroup.controls['city'].dirty || addressGroup.controls['city'].touched)">
+        <small *ngIf="addressGroup.controls['city'].errors?.['required']">City is required</small>
+      </div>
+    </div>
+  </div>
+-->
+  <button type="submit" class="btn btn-primary" [disabled]="employeeForm.invalid">Submit</button>
+</form>

@@ -1,0 +1,4 @@
+<div class="d-flex justify-content-between">
+  <span>{{ employee.name }} | {{ employee.department.name }} | {{ employee.salary | fibonacci }}</span>
+  <button type="button" class="btn btn-danger" (click)="onDeleteClick(employee.id)">Delete</button>
+</div>

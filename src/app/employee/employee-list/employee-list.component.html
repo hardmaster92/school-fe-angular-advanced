@@ -1,0 +1,11 @@
+<div class="list-group">
+  <cdk-virtual-scroll-viewport itemSize="55" class="example-viewport">
+    <div class="list-group-item" *cdkVirtualFor="let employee of employees$ | async">
+      <app-employee-list-element
+        [employee]="employee"
+        (employeDelete)="onDeleteClick($event)"
+      ></app-employee-list-element>
+    </div>
+  </cdk-virtual-scroll-viewport>
+
+</div>
